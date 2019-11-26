@@ -1,0 +1,35 @@
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.card-image {
+    border-radius: 15px;
+    margin-top: 15px;
+    width: 300px;
+    background-color: white;
+}
+
+.card {
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 150px;
+    height: 500px;
+    width: 400px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.first-card {
+    margin-left: 400px;
+    background-color: #ffe6e6;
+}
+
+.second-card {
+    margin-left: 600px;
+    background-color: #e6e6ff;
+}
+
+.third-card {
+    margin-left: 400px;
+    background-color: #ffe6ff;
+}
