@@ -12,6 +12,7 @@ The front end is built in **React 16.12.0**. To start your front end development
 1. Go to the lofi-frontend folder, usually by typing the following into your command line: 
 	`cd lofi-frontend`
 2. Start the development server: `npm start`
+3. Go to http://localhost:3000 to view it in the browser
 
 ### Back End Development
 The back end is in **Python 3** using **Flask**, with a **MongoDB** database.
