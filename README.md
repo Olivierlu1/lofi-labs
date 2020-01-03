@@ -28,7 +28,7 @@ From now on, just make sure you are in your virtual environment when developing 
 - To deactivate virtual environment: `deactivate`
 
 ## Pull Requests Procedure
-To make a change to the repository, open a pull request. First, your code changes should be on a branch (ex, "elise-icons-update") other than master. To create a pull request:
+To make a change to this repository, open a pull request - make sure you are not pushing directly to master! First, your code changes should be on a branch (ex, "elise-icons-update") other than master. To create a pull request:
 1. Click on the "Pull requests" tab from the lofi-labs repo in Github
 2. Click "new pull request"
 3. The base branch should be "master," and the compare banch should be your branch (ex, "elise-icons-update").
