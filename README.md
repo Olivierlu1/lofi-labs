@@ -33,7 +33,7 @@ From now on, just make sure you are in your virtual environment when developing 
 
 #### Running Back End Server Locally
 1. Make sure you are in the lofi-backend folder: `cd lofi-backend` 
-2. Set FLASK_APP environment variable to server.py, the location of the Flask server. For MacOS: 'export FLASK_APP=server.py`
+2. Set FLASK_APP environment variable to server.py, the location of the Flask server. For MacOS: `export FLASK_APP=server.py`
 3. Run flask server: `flask run`
 4. Go to http://127.0.0.1:5000/ to view in browser
 
