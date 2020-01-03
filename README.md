@@ -8,7 +8,7 @@
 
 *******
 
-*Direct questions related to README instructions below to Elise.*
+*Direct questions related to the README instructions below to Elise!*
 
 ## Development Guide
 ### Front End Development
