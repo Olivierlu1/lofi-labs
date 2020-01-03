@@ -6,6 +6,8 @@
 
 **Full-Stack Development Lead:** Elise Lee
 
+*By Elise Lee, 1/02/19*
+
 ## Development Guide
 ### Front End Development
 The front end is built in **React 16.12.0**. To start your front end development environment:
