@@ -8,7 +8,7 @@
 
 ## Development Guide
 ### Front End Development
-The front end is built in **React 16.12.0**. To start your front end development environment:
+The front end is built in **React 16.12.0**. To start your front end local development environment:
 1. Go to the lofi-frontend folder, usually by typing the following into your command line: 
 	`cd lofi-frontend`
 2. Start the development server: `npm start`
@@ -26,6 +26,12 @@ A virtual environment is an isolated copy of Python that lets you work on one pr
 From now on, just make sure you are in your virtual environment when developing in lofi-backend.
 - To activate virtual environment: `source mypython/bin/activate`
 - To deactivate virtual environment: `deactivate`
+
+#### Running Back End Server Locally
+1. Make sure you are in the lofi-backend folder: `cd lofi-backend` 
+2. Set FLASK_APP environment variable to server.py, the location of the Flask server. For MacOS: 'export FLASK_APP=server.py`
+3. Run flask server: `flask run`
+4. Go to http://127.0.0.1:5000/ to view in browser
 
 ## Pull Requests Procedure
 To make a change to this repository, open a pull request - make sure you are not pushing directly to master! First, your code changes should be on a branch (ex, "elise-icons-update") other than master. To create a pull request:
