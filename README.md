@@ -1,7 +1,9 @@
 # Lofi Labs - A Machine Learning and Web Development Project
 
 **Team:** Olivier Gabison, Joo Jang, Si Woo Park, Caedon Hsieh
+
 **Machine Learning Lead:** Daniel Bang
+
 **Full-Stack Development Lead:** Elise Lee
 
 ## Development Guide
