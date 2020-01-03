@@ -6,7 +6,9 @@
 
 **Full-Stack Development Lead:** Elise Lee
 
-*Direct questions related to README instructions to Elise*
+*******
+
+*Direct questions related to README instructions below to Elise*
 
 ## Development Guide
 ### Front End Development
