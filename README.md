@@ -1,4 +1,4 @@
-#Lofi Labs - A Machine Learning and Web Development Project
+# Lofi Labs - A Machine Learning and Web Development Project
 
 **Team:** Olivier Gabison, Joo Jang, Si Woo Park, Caedon Hsieh
 
@@ -22,11 +22,12 @@ A virtual environment is an isolated copy of Python that lets you work on one pr
 2. Create virtual environment: `virtualenv mypython`
 3. Activate virtual environment: `source mypython/bin/activate`
 4. Install requirements into virtual environment: `pip install -r requirements.txt`
-From now on, just make sure you are in your virtual environment when developing in lofi-backend.
-1. To activate virtual environment: `source mypython/bin/activate`
-2. To deactivate virtual environment: `deactivate`
 
-# Pull Requests Procedure
+From now on, just make sure you are in your virtual environment when developing in lofi-backend.
+- To activate virtual environment: `source mypython/bin/activate`
+- To deactivate virtual environment: `deactivate`
+
+## Pull Requests Procedure
 To make a change to the repository, open a pull request. First, your code changes should be on a branch (ex, "elise-icons-update") other than master. To create a pull request:
 1. Click on the "Pull requests" tab from the lofi-labs repo in Github
 2. Click "new pull request"
