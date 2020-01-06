@@ -19,7 +19,7 @@ The front end is built in **React 16.12.0**. To start your front end local devel
 3. Go to http://localhost:3000 to view it in the browser
 
 ### Back End Development
-The back end is in **Python 3** using **Flask**, with a **MongoDB** database.
+The back end is in **Python 3** using **Flask**.
 #### First-time development: Setting up virtual environment
 A virtual environment is an isolated copy of Python that lets you work on one project without worrying about changes globally that may affect other projects. Packages installed in your virtual environment will not affect the global Python installation.
 1. Go to lofi-backend: `cd lofi-backend`
