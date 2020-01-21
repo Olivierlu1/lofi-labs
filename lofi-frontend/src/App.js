@@ -4,7 +4,10 @@ import PlayButton from "./components/PlayButton";
 import * as mm from "@magenta/music";
 
 function App() {
-  const player = new mm.Player();
+  const player = new mm.SoundFontPlayer(
+    "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"
+  );
+
   const drums = {
     notes: [
       { pitch: 36, quantizedStartStep: 0, quantizedEndStep: 1, isDrum: true },
