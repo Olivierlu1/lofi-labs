@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import PlayButton from "./components/PlayButton";
+import LikeButton from "./components/LikeButton";
 import * as mm from "@magenta/music";
 import * as Tone from "tone";
 import * as Tonal from "tonal";
@@ -74,7 +75,8 @@ function App() {
   const quantizedSequence = mm.sequences.quantizeNoteSequence(sequence, 1);
 
   return (
-    <div>
+    <div className="buttons">
+      <LikeButton isLikeButton={false} />
       <PlayButton
         instrument="rnn"
         synth={synth}
@@ -82,6 +84,7 @@ function App() {
         quantizedSequence={quantizedSequence}
         Note={Note}
       />
+      <LikeButton isLikeButton={true} />
     </div>
   );
 }
