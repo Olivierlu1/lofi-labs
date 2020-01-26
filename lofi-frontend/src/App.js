@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import PlayButton from "./components/PlayButton";
+import LikeButton from "./components/LikeButton";
 import * as mm from "@magenta/music";
 
 function App() {
@@ -55,9 +56,10 @@ function App() {
   };
 
   return (
-    <div>
-      <PlayButton instrument="drums" player={player} drums={drums} />
+    <div className="buttons">
+      <LikeButton isLikeButton={false} />
       <PlayButton instrument="piano" player={player} piano={piano} />
+      <LikeButton isLikeButton={true} />
     </div>
   );
 }
