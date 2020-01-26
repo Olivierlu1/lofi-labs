@@ -1,30 +1,23 @@
 import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
-import { grey } from '@material-ui/core/colors';
+import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
+import { grey } from "@material-ui/core/colors";
 
-const PlayButtonStyle = {fontSize: 100, color: grey[50]}
+const PlayButtonStyle = { fontSize: 100, color: grey[50] };
 
-const PlayButton = ({
-  instrument,
-
-  improvRNN,
-  synth,
-  quantizedSequence,
-  Note
-}) => {
-  const [playState, setPlayState] = useState(false);
+const PlayButton = ({ improvRNN, synth, quantizedSequence, Note }) => {
+  const [playState, setPlayState] = useState(true);
 
   const handleClick = () => {
     setPlayState(!playState);
     if (playState === true && improvRNN) startProgram(improvRNN);
   };
 
-  const startProgram = async improvRNN => {
+  const startProgram = improvRNN => {
     try {
-      await improvRNN.initialize();
-      let improvisedMelody = await improvRNN.continueSequence(
+      improvRNN.initialize();
+      let improvisedMelody = improvRNN.continueSequence(
         quantizedSequence,
         60,
         2.0,
@@ -53,10 +46,10 @@ const PlayButton = ({
             note.quantizedStartStep
           );
         });
-        return true;
       };
 
       playGeneratedMelody();
+      setPlayState(true);
     } catch (error) {
       console.error(error);
     }
@@ -64,8 +57,11 @@ const PlayButton = ({
 
   return (
     <IconButton onClick={handleClick}>
-      {(playState ? <PlayCircleOutlineIcon style={PlayButtonStyle} />
-                  : <PauseCircleOutlineIcon style={PlayButtonStyle} />)}
+      {playState ? (
+        <PlayCircleOutlineIcon style={PlayButtonStyle} />
+      ) : (
+        <PauseCircleOutlineIcon style={PlayButtonStyle} />
+      )}
     </IconButton>
   );
 };

@@ -7,14 +7,6 @@ import * as Tone from "tone";
 import * as Tonal from "tonal";
 
 function App() {
-  const player = new mm.SoundFontPlayer(
-    "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"
-  );
-
-  const rnnPlayer = new mm.SoundFontPlayer(
-    "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"
-  );
-
   const improvRNN = new mm.MusicRNN(
     "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/chord_pitches_improv"
   );
