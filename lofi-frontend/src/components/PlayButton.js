@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const PlayButton = ({
   instrument,
-
   improvRNN,
   synth,
   quantizedSequence,
