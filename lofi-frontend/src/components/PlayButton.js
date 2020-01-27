@@ -14,10 +14,10 @@ const PlayButton = ({ improvRNN, synth, quantizedSequence, Note }) => {
     if (playState === true && improvRNN) startProgram(improvRNN);
   };
 
-  const startProgram = improvRNN => {
+  const startProgram = async improvRNN => {
     try {
-      improvRNN.initialize();
-      let improvisedMelody = improvRNN.continueSequence(
+      await improvRNN.initialize();
+      let improvisedMelody = await improvRNN.continueSequence(
         quantizedSequence,
         60,
         2.0,
