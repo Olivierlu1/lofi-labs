@@ -12,6 +12,7 @@ function App() {
   );
   improvRNN.initialize();
 
+  const rnnPlayer = new mm.Player();
   const synth = new Tone.Synth().toMaster();
   const { midi, Note } = Tonal;
 
@@ -75,6 +76,7 @@ function App() {
         improvRNN={improvRNN}
         quantizedSequence={quantizedSequence}
         Note={Note}
+        rnnPlayer={rnnPlayer}
       />
       <LikeButton isLikeButton={true} />
     </div>
