@@ -15,7 +15,8 @@ const PlayButton = ({ improvRNN, quantizedSequence, rnnPlayer }) => {
     if (playState === false) rnnPlayer.stop();
   };
 
-  const startProgram = async improvRNN => {
+
+  async function startProgram(improvRNN) {
     try {
       await improvRNN.initialize();
       let improvisedMelody = await improvRNN.continueSequence(
@@ -38,7 +39,10 @@ const PlayButton = ({ improvRNN, quantizedSequence, rnnPlayer }) => {
         ]
       );
 
-      rnnPlayer.start(improvisedMelody);
+      rnnPlayer.start(improvisedMelody)
+        .then(() => {
+          startProgram(improvRNN)
+        });
     } catch (error) {
       console.error(error);
     }
