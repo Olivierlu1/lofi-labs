@@ -1,10 +1,9 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from "react";
 import PlayButton from "./components/PlayButton";
 import LikeButton from "./components/LikeButton";
 import * as mm from "@magenta/music";
-import * as Tone from "tone";
 import * as Tonal from "tonal";
+import Button from "@material-ui/core/Button";
 
 function App() {
   const improvRNN = new mm.MusicRNN(
@@ -12,9 +11,12 @@ function App() {
   );
   improvRNN.initialize();
 
-  const rnnPlayer = new mm.Player();
-  const synth = new Tone.Synth().toMaster();
-  const { midi, Note } = Tonal;
+  let rnnPlayer = new mm.Player();
+  let pianoRnnPlayer = new mm.SoundFontPlayer(
+    "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"
+  );
+
+  const { midi } = Tonal;
 
   const sequence = {
     ticksPerQuarter: 220,
@@ -66,19 +68,30 @@ function App() {
   };
 
   const quantizedSequence = mm.sequences.quantizeNoteSequence(sequence, 1);
+  const [currPlayer, setCurrPlayer] = useState(rnnPlayer);
 
+  const handlePlayer = e => {
+    e.preventDefault();
+    console.log(e.target.firstChild.data);
+    if (e.target.firstChild.data === "Piano") setCurrPlayer(pianoRnnPlayer);
+    if (e.target.firstChild.data === "Synthesizer") setCurrPlayer(rnnPlayer);
+  };
   return (
     <div className="buttons">
       <LikeButton isLikeButton={false} />
       <PlayButton
         instrument="rnn"
-        synth={synth}
         improvRNN={improvRNN}
         quantizedSequence={quantizedSequence}
-        Note={Note}
-        rnnPlayer={rnnPlayer}
+        currPlayer={currPlayer}
       />
       <LikeButton isLikeButton={true} />
+      <Button name="synth" onClick={handlePlayer} variant="contained">
+        Synthesizer
+      </Button>
+      <Button name="piano" onClick={handlePlayer} variant="contained">
+        Piano
+      </Button>
     </div>
   );
 }

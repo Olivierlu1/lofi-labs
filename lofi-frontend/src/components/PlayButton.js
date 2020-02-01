@@ -6,15 +6,14 @@ import { grey } from "@material-ui/core/colors";
 
 const PlayButtonStyle = { fontSize: 100, color: grey[50] };
 
-const PlayButton = ({ improvRNN, quantizedSequence, rnnPlayer }) => {
+const PlayButton = ({ improvRNN, quantizedSequence, currPlayer }) => {
   const [playState, setPlayState] = useState(true);
 
   const handleClick = () => {
     setPlayState(!playState);
     if (playState === true && improvRNN) startProgram(improvRNN);
-    if (playState === false) rnnPlayer.stop();
+    if (playState === false) currPlayer.stop();
   };
-
 
   async function startProgram(improvRNN) {
     try {
@@ -39,14 +38,14 @@ const PlayButton = ({ improvRNN, quantizedSequence, rnnPlayer }) => {
         ]
       );
 
-      rnnPlayer.start(improvisedMelody)
-        .then(() => {
-          startProgram(improvRNN)
-        });
+      currPlayer.start(improvisedMelody).then(() => {
+        console.log("restarting");
+        startProgram(improvRNN);
+      });
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
   return (
     <IconButton onClick={handleClick}>
