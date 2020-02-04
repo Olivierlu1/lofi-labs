@@ -3,6 +3,8 @@ import IconButton from "@material-ui/core/IconButton";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import { grey } from "@material-ui/core/colors";
+import audioGif from "../assets/audioGIF.gif";
+import LikeButton from "./LikeButton";
 
 const PlayButtonStyle = { fontSize: 100, color: grey[50] };
 
@@ -14,6 +16,13 @@ const PlayButton = ({ improvRNN, quantizedSequence, currPlayer }) => {
     if (playState === true && improvRNN) startProgram(improvRNN);
     if (playState === false) currPlayer.stop();
   };
+
+  function renderGif() {
+    if (playState) {
+      return <img src={audioGif} alt="audio visualizer" />;
+    }
+    return <div></div>;
+  }
 
   async function startProgram(improvRNN) {
     try {
@@ -48,13 +57,19 @@ const PlayButton = ({ improvRNN, quantizedSequence, currPlayer }) => {
   }
 
   return (
-    <IconButton onClick={handleClick}>
-      {playState ? (
-        <PlayCircleOutlineIcon style={PlayButtonStyle} />
-      ) : (
-        <PauseCircleOutlineIcon style={PlayButtonStyle} />
-      )}
-    </IconButton>
+    <div>
+      <LikeButton isLikeButton={false} />
+      <IconButton onClick={handleClick}>
+        {playState ? (
+          <PlayCircleOutlineIcon style={PlayButtonStyle} />
+        ) : (
+          <PauseCircleOutlineIcon style={PlayButtonStyle} />
+        )}
+      </IconButton>
+      <LikeButton isLikeButton={true} />
+      <br />
+      {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
+    </div>
   );
 };
 

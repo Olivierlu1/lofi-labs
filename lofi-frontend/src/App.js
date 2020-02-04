@@ -78,20 +78,18 @@ function App() {
   };
   return (
     <div className="buttons">
-      <LikeButton isLikeButton={false} />
-      <PlayButton
-        instrument="rnn"
-        improvRNN={improvRNN}
-        quantizedSequence={quantizedSequence}
-        currPlayer={currPlayer}
-      />
-      <LikeButton isLikeButton={true} />
       <Button name="synth" onClick={handlePlayer} variant="contained">
         Synthesizer
       </Button>
       <Button name="piano" onClick={handlePlayer} variant="contained">
         Piano
       </Button>
+      <PlayButton
+        instrument="rnn"
+        improvRNN={improvRNN}
+        quantizedSequence={quantizedSequence}
+        currPlayer={currPlayer}
+      />
     </div>
   );
 }
