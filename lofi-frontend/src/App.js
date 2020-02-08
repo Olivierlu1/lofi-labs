@@ -35,10 +35,10 @@ function App() {
       }
     ],
     notes: [
-      { pitch: midi("Gb4"), startTime: 0, endTime: 1 },
-      { pitch: midi("F4"), startTime: 1, endTime: 3.5 },
-      { pitch: midi("Ab4"), startTime: 3.5, endTime: 4 },
-      { pitch: midi("C5"), startTime: 4, endTime: 4.5 },
+      { pitch: midi("G4"), startTime: 0, endTime: 1 },
+      { pitch: midi("E4"), startTime: 1, endTime: 3.5 },
+      { pitch: midi("G4"), startTime: 3.5, endTime: 4 },
+      { pitch: midi("D5"), startTime: 4, endTime: 4.5 },
       { pitch: midi("Eb5"), startTime: 4.5, endTime: 5 },
       { pitch: midi("Gb5"), startTime: 5, endTime: 6 },
       { pitch: midi("F5"), startTime: 6, endTime: 7 },

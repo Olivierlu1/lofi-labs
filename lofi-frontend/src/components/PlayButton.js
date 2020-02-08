@@ -32,6 +32,9 @@ const PlayButton = ({ improvRNN, quantizedSequence, currPlayer }) => {
         60,
         2.0,
         [
+          "Gm",
+          "Em",
+          "D",
           "Bm",
           "Bbm",
           "Gb7",
@@ -46,6 +49,10 @@ const PlayButton = ({ improvRNN, quantizedSequence, currPlayer }) => {
           "AM7"
         ]
       );
+
+      improvisedMelody.notes.forEach(function (n) {
+        return n.program = 11; //Change this number to change the instrument
+      });
 
       currPlayer.start(improvisedMelody).then(() => {
         console.log("restarting");
