@@ -11,8 +11,7 @@ function App() {
   );
   improvRNN.initialize();
 
-  let rnnPlayer = new mm.Player();
-  let pianoRnnPlayer = new mm.SoundFontPlayer(
+  let rnnPlayer = new mm.SoundFontPlayer(
     "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"
   );
 
@@ -42,7 +41,7 @@ function App() {
       { pitch: midi("D5"), quantizedStartStep: 4, quantizedEndStep: 5 },
       { pitch: midi("G4"), quantizedStartStep: 5, quantizedEndStep: 6 },
       { pitch: midi("G4"), quantizedStartStep: 6, quantizedEndStep: 7 },
-      { pitch: midi("D5"), quantizedStartStep: 7, quantizedEndStep: 8 },
+      { pitch: midi("D5"), quantizedStartStep: 7, quantizedEndStep: 8 }
     ]
   };
 
@@ -50,53 +49,39 @@ function App() {
     notes: [
       { pitch: 42, quantizedStartStep: 0, quantizedEndStep: 1, isDrum: true },
       { pitch: 36, quantizedStartStep: 0, quantizedEndStep: 1, isDrum: true },
-      
+
       { pitch: 42, quantizedStartStep: 2, quantizedEndStep: 3, isDrum: true },
-      
+
       { pitch: 42, quantizedStartStep: 4, quantizedEndStep: 5, isDrum: true },
       { pitch: 38, quantizedStartStep: 4, quantizedEndStep: 5, isDrum: true },
-      
+
       { pitch: 42, quantizedStartStep: 6, quantizedEndStep: 7, isDrum: true },
       { pitch: 36, quantizedStartStep: 7, quantizedEndStep: 8, isDrum: true },
       { pitch: 42, quantizedStartStep: 8, quantizedEndStep: 9, isDrum: true },
       { pitch: 36, quantizedStartStep: 9, quantizedEndStep: 10, isDrum: true },
-  
+
       { pitch: 42, quantizedStartStep: 10, quantizedEndStep: 11, isDrum: true },
-      
+
       { pitch: 42, quantizedStartStep: 12, quantizedEndStep: 13, isDrum: true },
       { pitch: 38, quantizedStartStep: 12, quantizedEndStep: 13, isDrum: true },
-      
-      { pitch: 46, quantizedStartStep: 14, quantizedEndStep: 16, isDrum: true },
-      
+
+      { pitch: 46, quantizedStartStep: 14, quantizedEndStep: 16, isDrum: true }
     ],
-    quantizationInfo: {stepsPerQuarter: 4},
-    tempos: [{time: 0, qpm: 60}],
+    quantizationInfo: { stepsPerQuarter: 4 },
+    tempos: [{ time: 0, qpm: 60 }],
     totalQuantizedSteps: 11
   };
 
   const quantizedSequence = mm.sequences.quantizeNoteSequence(sequence, 1);
-  const [currPlayer, setCurrPlayer] = useState(rnnPlayer);
 
-  const handlePlayer = e => {
-    e.preventDefault();
-    console.log(e.target.firstChild.data);
-    if (e.target.firstChild.data === "Piano") setCurrPlayer(pianoRnnPlayer);
-    if (e.target.firstChild.data === "Synthesizer") setCurrPlayer(rnnPlayer);
-  };
   return (
     <div className="buttons">
-      <Button name="synth" onClick={handlePlayer} variant="contained">
-        Synthesizer
-      </Button>
-      <Button name="piano" onClick={handlePlayer} variant="contained">
-        Piano
-      </Button>
       <PlayButton
         instrument="rnn"
         improvRNN={improvRNN}
         DRUMS={DRUMS}
         quantizedSequence={quantizedSequence}
-        currPlayer={currPlayer}
+        rnnPlayer={rnnPlayer}
       />
     </div>
   );
