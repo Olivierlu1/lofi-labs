@@ -8,7 +8,7 @@ import LikeButton from "./LikeButton";
 
 const PlayButtonStyle = { fontSize: 100, color: grey[50] };
 
-const PlayButton = ({ improvRNN, quantizedSequence, currPlayer }) => {
+const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, currPlayer }) => {
   const [playState, setPlayState] = useState(true);
 
   const handleClick = () => {
@@ -29,33 +29,40 @@ const PlayButton = ({ improvRNN, quantizedSequence, currPlayer }) => {
       await improvRNN.initialize();
       let improvisedMelody = await improvRNN.continueSequence(
         quantizedSequence,
-        60,
-        2.0,
+        16,
+        1.5,
         [
-          "Gm",
-          "Em",
-          "D",
-          "Bm",
-          "Bbm",
-          "Gb7",
-          "F7",
-          "Ab",
-          "Ab7",
-          "G7",
-          "Gb7",
-          "F7",
-          "Bb7",
-          "Eb7",
-          "AM7"
+          "Gm"
+          // "Em",
+          // "D",
+          // "Bm",
+          // "Bbm",
+          // "Gb7",
+          // "F7",
+          // "Ab",
+          // "Ab7",
+          // "G7",
+          // "Gb7",
+          // "F7",
+          // "Bb7",
+          // "Eb7",
+          // "AM7"
         ]
       );
 
       improvisedMelody.notes.forEach(function (n) {
-        return n.program = 11; //Change this number to change the instrument
+        return n.program = 0; //Change this number to change the instrument
       });
+
+      improvisedMelody.notes.push(...DRUMS.notes);
+
+      console.log(improvisedMelody)
+      
+      // currPlayer.start(improvisedMelody)
 
       currPlayer.start(improvisedMelody).then(() => {
         console.log("restarting");
+        currPlayer.stop()
         startProgram(improvRNN);
       });
     } catch (error) {
