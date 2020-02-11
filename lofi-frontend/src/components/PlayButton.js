@@ -21,7 +21,7 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
     if (playState) {
       return <img src={audioGif} alt="audio visualizer" />;
     }
-    return <div></div>;
+    return <div className="container2"></div>;
   }
 
   async function startProgram(improvRNN) {
@@ -68,6 +68,10 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
 
   return (
     <div>
+    <div className = "container2">
+      {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
+      </div>
+    <div className="container1">
       <LikeButton isLikeButton={false} />
       <IconButton onClick={handleClick}>
         {playState ? (
@@ -77,9 +81,10 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
         )}
       </IconButton>
       <LikeButton isLikeButton={true} />
+      </div>
       <br />
-      {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
-    </div>
+      
+      </div>
   );
 };
 

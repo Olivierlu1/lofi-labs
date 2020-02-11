@@ -4,6 +4,7 @@ import LikeButton from "./components/LikeButton";
 import * as mm from "@magenta/music";
 import * as Tonal from "tonal";
 import Button from "@material-ui/core/Button";
+import './App.css';
 
 function App() {
   const improvRNN = new mm.MusicRNN(
@@ -75,7 +76,7 @@ function App() {
   const quantizedSequence = mm.sequences.quantizeNoteSequence(sequence, 1);
 
   return (
-    <div className="buttons">
+    <div className='buttons'>
       <PlayButton
         instrument="rnn"
         improvRNN={improvRNN}
