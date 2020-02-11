@@ -17,6 +17,13 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
     if (playState === false) rnnPlayer.stop();
   };
 
+  function renderGif() {
+    if (playState) {
+      return <img src={audioGif} alt="audio visualizer" />;
+    }
+    return <div className="container2"></div>;
+  }
+
   async function startProgram(improvRNN) {
     try {
       await improvRNN.initialize();
@@ -61,17 +68,21 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
 
   return (
     <div>
-      <LikeButton isLikeButton={false} />
-      <IconButton onClick={handleClick}>
-        {playState ? (
-          <PlayCircleOutlineIcon style={PlayButtonStyle} />
-        ) : (
-          <PauseCircleOutlineIcon style={PlayButtonStyle} />
-        )}
-      </IconButton>
-      <LikeButton isLikeButton={true} />
+      <div className="container2">
+        {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
+      </div>
+      <div className="container1">
+        <LikeButton isLikeButton={false} />
+        <IconButton onClick={handleClick}>
+          {playState ? (
+            <PlayCircleOutlineIcon style={PlayButtonStyle} />
+          ) : (
+            <PauseCircleOutlineIcon style={PlayButtonStyle} />
+          )}
+        </IconButton>
+        <LikeButton isLikeButton={true} />
+      </div>
       <br />
-      {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
     </div>
   );
 };

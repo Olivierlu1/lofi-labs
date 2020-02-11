@@ -1,0 +1,20 @@
+.container1{
+  display:flex;
+  height: 120px;
+  width:100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(63, 142, 192);
+  border-radius: 30px;
+}
+.container2 {
+  display:flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height:150px;
+  width: 200px;
+  justify-content: center;
+  align-content: stretch;
+  border-radius: 30px;
+}

@@ -2,6 +2,8 @@ import React from "react";
 import PlayButton from "./components/PlayButton";
 import * as mm from "@magenta/music";
 import * as Tonal from "tonal";
+import Button from "@material-ui/core/Button";
+import "./App.css";
 
 function App() {
   const improvRNN = new mm.MusicRNN(
