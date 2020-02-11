@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PlayButton from "./components/PlayButton";
-import LikeButton from "./components/LikeButton";
 import * as mm from "@magenta/music";
 import * as Tonal from "tonal";
-import Button from "@material-ui/core/Button";
 
 function App() {
   const improvRNN = new mm.MusicRNN(
@@ -30,7 +28,7 @@ function App() {
     tempos: [
       {
         time: 0,
-        qpm: 60
+        qpm: 110
       }
     ],
     notes: [

@@ -17,13 +17,6 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
     if (playState === false) rnnPlayer.stop();
   };
 
-  function renderGif() {
-    if (playState) {
-      return <img src={audioGif} alt="audio visualizer" />;
-    }
-    return <div></div>;
-  }
-
   async function startProgram(improvRNN) {
     try {
       await improvRNN.initialize();
@@ -51,7 +44,7 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
       );
 
       improvisedMelody.notes.forEach(function(n) {
-        return (n.program = 14);
+        return (n.program = 0);
       });
 
       improvisedMelody.notes.push(...DRUMS.notes);
