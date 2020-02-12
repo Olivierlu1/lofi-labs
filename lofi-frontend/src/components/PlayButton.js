@@ -3,17 +3,25 @@ import IconButton from "@material-ui/core/IconButton";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import { grey } from "@material-ui/core/colors";
+import { chord } from "@tonaljs/chord";
+import { toMidi } from "@tonaljs/midi";
 import audioGif from "../assets/audioGIF.gif";
 import LikeButton from "./LikeButton";
 
 const PlayButtonStyle = { fontSize: 100, color: grey[50] };
 
-const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
+const PlayButton = ({
+  improvRNN,
+  quantizedSequence,
+  DRUMS,
+  rnnPlayer,
+  chordProgression
+}) => {
   const [playState, setPlayState] = useState(true);
 
   const handleClick = () => {
     setPlayState(!playState);
-    if (playState === true && improvRNN) startProgram(improvRNN);
+    if (playState === true && improvRNN) startProgram(improvRNN, 0);
     if (playState === false) rnnPlayer.stop();
   };
 
@@ -24,30 +32,28 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
     return <div className="container2"></div>;
   }
 
-  async function startProgram(improvRNN) {
+  function chordToNoteSequence(chordName, startStep, endStep, instrument = 0) {
+    let noteSequence = [];
+    for (let note of chord(chordName).notes) {
+      note = note + "3";
+      noteSequence.push({
+        pitch: toMidi(note),
+        quantizedStartStep: startStep,
+        quantizedEndStep: endStep,
+        program: instrument
+      });
+    }
+    return noteSequence;
+  }
+
+  async function startProgram(improvRNN, chordIndex) {
     try {
       await improvRNN.initialize();
       let improvisedMelody = await improvRNN.continueSequence(
         quantizedSequence,
         16,
-        1.5,
-        [
-          "Gm",
-          "Em",
-          "D",
-          "Bm",
-          "Bbm",
-          "Gb7",
-          "F7",
-          "Ab",
-          "Ab7",
-          "G7",
-          "Gb7",
-          "F7",
-          "Bb7",
-          "Eb7",
-          "AM7"
-        ]
+        1.2,
+        [chordProgression[chordIndex]]
       );
 
       improvisedMelody.notes.forEach(function(n) {
@@ -56,10 +62,19 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
 
       improvisedMelody.notes.push(...DRUMS.notes);
 
+      const chordNotes = chordToNoteSequence(
+        chordProgression[chordIndex],
+        0,
+        16,
+        4
+      );
+      improvisedMelody.notes.push(...chordNotes);
+      console.log(improvisedMelody);
+      improvisedMelody.tempos = [{ time: 0, qpm: 100 }];
+
       rnnPlayer.start(improvisedMelody).then(() => {
         console.log("restarting");
-        rnnPlayer.stop();
-        startProgram(improvRNN);
+        startProgram(improvRNN, (chordIndex + 1) % 4);
       });
     } catch (error) {
       console.error(error);
@@ -67,7 +82,7 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
   }
 
   return (
-    <div>
+    <div className="wrapper">
       <div className="container2">
         {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
       </div>
