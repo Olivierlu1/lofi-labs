@@ -69,9 +69,7 @@ const PlayButton = ({ improvRNN, quantizedSequence, DRUMS, rnnPlayer }) => {
   return (
     <div className="wrapper">
       <div className = "container2">
-        <div className = "visualizer">
           {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
-        </div>
       </div>
       <div className="container1">
         <LikeButton isLikeButton={false} />
