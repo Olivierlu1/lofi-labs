@@ -25,13 +25,6 @@ const PlayButton = ({
     if (playState === false) rnnPlayer.stop();
   };
 
-  function renderGif() {
-    if (playState) {
-      return <img src={audioGif} alt="audio visualizer" />;
-    }
-    return <div className="container2"></div>;
-  }
-
   function chordToNoteSequence(chordName, startStep, endStep, instrument = 0) {
     let noteSequence = [];
     for (let note of chord(chordName).notes) {

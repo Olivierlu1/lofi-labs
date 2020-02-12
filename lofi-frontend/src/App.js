@@ -2,7 +2,6 @@ import React from "react";
 import PlayButton from "./components/PlayButton";
 import * as mm from "@magenta/music";
 import { fromRomanNumerals } from "@tonaljs/progression";
-import Button from "@material-ui/core/Button";
 import "./App.css";
 
 function App() {
@@ -20,9 +19,12 @@ function App() {
     ["IMaj7", "VIm7", "IIm7", "V7"],
     ["IIm7", "V7", "IIIm7", "VI7"],
     ["IVMaj7", "IIIm7", "IIm7", "IMaj7"]
-  ]
+  ];
 
-  const generatedChordProgression = fromRomanNumerals("C", chordProgressions[2]);
+  const generatedChordProgression = fromRomanNumerals(
+    "C",
+    chordProgressions[2]
+  );
 
   const sequence = {
     quantizationInfo: { stepsPerQuarter: 2 },
@@ -41,11 +43,11 @@ function App() {
       }
     ],
     notes: [
-      { pitch: 'G4', quantizedStartStep: 0, quantizedEndStep: 1 },
-      { pitch: 'D4', quantizedStartStep: 1, quantizedEndStep: 3 },
-      { pitch: 'D4', quantizedStartStep: 3, quantizedEndStep: 6 },
-      { pitch: 'G4', quantizedStartStep: 6, quantizedEndStep: 7 },
-      { pitch: 'G4', quantizedStartStep: 7, quantizedEndStep: 8 }
+      { pitch: "G4", quantizedStartStep: 0, quantizedEndStep: 1 },
+      { pitch: "D4", quantizedStartStep: 1, quantizedEndStep: 3 },
+      { pitch: "D4", quantizedStartStep: 3, quantizedEndStep: 6 },
+      { pitch: "G4", quantizedStartStep: 6, quantizedEndStep: 7 },
+      { pitch: "G4", quantizedStartStep: 7, quantizedEndStep: 8 }
     ]
   };
 
