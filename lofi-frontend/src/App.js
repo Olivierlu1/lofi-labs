@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import PlayButton from "./components/PlayButton";
 import LikeButton from "./components/LikeButton";
 import * as mm from "@magenta/music";
-import * as Tonal from "tonal";
+import { fromRomanNumerals } from "@tonaljs/progression";
 import Button from "@material-ui/core/Button";
+import './App.css';
 
 function App() {
   const improvRNN = new mm.MusicRNN(
@@ -15,11 +16,18 @@ function App() {
     "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"
   );
 
-  const { midi } = Tonal;
+  const chordProgressions = [
+    ["IIm7", "V7", "IMaj7", "VI7"],
+    ["IMaj7", "VIm7", "IIm7", "V7"],
+    ["IIm7", "V7", "IIIm7", "VI7"],
+    ["IVMaj7", "IIIm7", "IIm7", "IMaj7"]
+  ]
+
+  const generatedChordProgression = fromRomanNumerals("C", chordProgressions[2]);
 
   const sequence = {
-    ticksPerQuarter: 220,
-    totalTime: 28.5,
+    quantizationInfo: { stepsPerQuarter: 2 },
+    totalQuantizedSteps: 8,
     timeSignatures: [
       {
         time: 0,
@@ -34,14 +42,11 @@ function App() {
       }
     ],
     notes: [
-      { pitch: midi("G4"), quantizedStartStep: 0, quantizedEndStep: 1 },
-      { pitch: midi("G4"), quantizedStartStep: 1, quantizedEndStep: 2 },
-      { pitch: midi("B4"), quantizedStartStep: 2, quantizedEndStep: 3 },
-      { pitch: midi("G4"), quantizedStartStep: 3, quantizedEndStep: 4 },
-      { pitch: midi("D5"), quantizedStartStep: 4, quantizedEndStep: 5 },
-      { pitch: midi("G4"), quantizedStartStep: 5, quantizedEndStep: 6 },
-      { pitch: midi("G4"), quantizedStartStep: 6, quantizedEndStep: 7 },
-      { pitch: midi("D5"), quantizedStartStep: 7, quantizedEndStep: 8 }
+      { pitch: 'G4', quantizedStartStep: 0, quantizedEndStep: 1 },
+      { pitch: 'D4', quantizedStartStep: 1, quantizedEndStep: 3 },
+      { pitch: 'D4', quantizedStartStep: 3, quantizedEndStep: 6 },
+      { pitch: 'G4', quantizedStartStep: 6, quantizedEndStep: 7 },
+      { pitch: 'G4', quantizedStartStep: 7, quantizedEndStep: 8 }
     ]
   };
 
@@ -53,35 +58,33 @@ function App() {
       { pitch: 42, quantizedStartStep: 2, quantizedEndStep: 3, isDrum: true },
 
       { pitch: 42, quantizedStartStep: 4, quantizedEndStep: 5, isDrum: true },
-      { pitch: 38, quantizedStartStep: 4, quantizedEndStep: 5, isDrum: true },
+      { pitch: 37, quantizedStartStep: 4, quantizedEndStep: 5, isDrum: true },
 
       { pitch: 42, quantizedStartStep: 6, quantizedEndStep: 7, isDrum: true },
       { pitch: 36, quantizedStartStep: 7, quantizedEndStep: 8, isDrum: true },
       { pitch: 42, quantizedStartStep: 8, quantizedEndStep: 9, isDrum: true },
-      { pitch: 36, quantizedStartStep: 9, quantizedEndStep: 10, isDrum: true },
+      { pitch: 36, quantizedStartStep: 8, quantizedEndStep: 9, isDrum: true },
 
       { pitch: 42, quantizedStartStep: 10, quantizedEndStep: 11, isDrum: true },
 
       { pitch: 42, quantizedStartStep: 12, quantizedEndStep: 13, isDrum: true },
-      { pitch: 38, quantizedStartStep: 12, quantizedEndStep: 13, isDrum: true },
+      { pitch: 37, quantizedStartStep: 12, quantizedEndStep: 13, isDrum: true },
 
-      { pitch: 46, quantizedStartStep: 14, quantizedEndStep: 16, isDrum: true }
+      { pitch: 42, quantizedStartStep: 14, quantizedEndStep: 16, isDrum: true }
     ],
-    quantizationInfo: { stepsPerQuarter: 4 },
-    tempos: [{ time: 0, qpm: 60 }],
-    totalQuantizedSteps: 11
+    quantizationInfo: { stepsPerQuarter: 8 },
+    totalQuantizedSteps: 16
   };
 
-  const quantizedSequence = mm.sequences.quantizeNoteSequence(sequence, 1);
-
   return (
-    <div className="buttons">
+    <div className='buttons'>
       <PlayButton
         instrument="rnn"
         improvRNN={improvRNN}
         DRUMS={DRUMS}
-        quantizedSequence={quantizedSequence}
+        quantizedSequence={sequence}
         rnnPlayer={rnnPlayer}
+        chordProgression={generatedChordProgression}
       />
     </div>
   );
