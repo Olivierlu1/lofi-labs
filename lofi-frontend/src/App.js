@@ -4,6 +4,7 @@ import * as mm from "@magenta/music";
 import { fromRomanNumerals } from "@tonaljs/progression";
 import "./App.css";
 
+
 function App() {
   const improvRNN = new mm.MusicRNN(
     "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/chord_pitches_improv"
@@ -78,16 +79,20 @@ function App() {
   };
 
   return (
-    <div className="buttons">
-      <PlayButton
-        instrument="rnn"
-        improvRNN={improvRNN}
-        DRUMS={DRUMS}
-        quantizedSequence={sequence}
-        rnnPlayer={rnnPlayer}
-        chordProgression={generatedChordProgression}
-      />
+    <div>
+      
+      <div className="buttons">
+        <PlayButton
+          instrument="rnn"
+          improvRNN={improvRNN}
+          DRUMS={DRUMS}
+          quantizedSequence={sequence}
+          rnnPlayer={rnnPlayer}
+          chordProgression={generatedChordProgression}
+       />
+      </div>
     </div>
+    
   );
 }
 

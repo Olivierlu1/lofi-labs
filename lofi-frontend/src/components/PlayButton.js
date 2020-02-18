@@ -7,6 +7,7 @@ import { chord } from "@tonaljs/chord";
 import { toMidi } from "@tonaljs/midi";
 import audioGif from "../assets/audioGIF.gif";
 import LikeButton from "./LikeButton";
+import Header from "./header";
 
 const PlayButtonStyle = { fontSize: 100, color: grey[50] };
 
@@ -76,6 +77,10 @@ const PlayButton = ({
 
   return (
     <div className="wrapper">
+      <div className="header">
+        <Header />
+      </div>
+      <div className="container3">
       <div className="container2">
         {!playState ? <img src={audioGif} alt="audio visualizer" /> : null}
       </div>
@@ -89,6 +94,7 @@ const PlayButton = ({
           )}
         </IconButton>
         <LikeButton isLikeButton={true} />
+      </div>
       </div>
       <br />
     </div>
