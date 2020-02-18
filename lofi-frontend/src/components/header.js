@@ -1,7 +1,5 @@
-import React from 'react';
-function Header(){
-    return (
-    <h1>Lofi Labs</h1>
-    )
+import React from "react";
+function Header() {
+  return <h1>Lofi Labs</h1>;
 }
 export default Header;
