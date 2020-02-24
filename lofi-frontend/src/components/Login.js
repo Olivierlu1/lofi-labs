@@ -4,7 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Input, Button, Card, Grid } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-const Login = () => {
+const Login = ({ setCurrUser }) => {
   const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
   const history = useHistory();
   const { state } = useLocation();
@@ -13,10 +13,16 @@ const Login = () => {
     setLoginInfo({ ...loginInfo, [field]: data });
   };
 
-  const login = e => {
+  const login = async e => {
     e.preventDefault();
-    loginHelper(loginInfo);
-    history.push("/");
+    const result = await loginHelper(loginInfo);
+    if (result !== undefined) {
+      setCurrUser(loginInfo);
+      history.push("/");
+    } else {
+      alert("Wrong info: Try out a different username / password");
+      setCurrUser({});
+    }
   };
 
   const goBack = () =>

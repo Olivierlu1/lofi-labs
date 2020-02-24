@@ -19,9 +19,12 @@ export const loginHelper = user => {
       password: user.password
     })
     .then(response => {
-      localStorage.setItem("usertoken", response.data.token);
-      console.log(response.data.token);
-      return response.data.token;
+      if (typeof response.data["token"] !== undefined) {
+        localStorage.setItem("usertoken", response.data.token);
+        return response.data.token;
+      } else {
+        return response.data;
+      }
     })
     .catch(err => {
       console.log(err);

@@ -86,17 +86,19 @@ function App() {
 
   // Set current User
   useEffect(() => {
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
+    if (localStorage.usertoken) {
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token, { header: true });
+      setCurrUser({
+        email: decoded.identity.email
+      });
+    }
+  }, []);
 
-    setCurrUser({
-      email: decoded.identity.email
-    });
-  }, [localStorage.usertoken]);
-
+  console.log(currUser);
   return (
     <Router>
-      <NavBar currUser={currUser} />
+      <NavBar currUser={currUser} setCurrUser={setCurrUser} />
       <Switch>
         <Route
           exact
@@ -116,7 +118,11 @@ function App() {
 
         {/* </div> */}
         <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <Route
+          exact
+          path="/login"
+          render={() => <Login setCurrUser={setCurrUser} />}
+        />
       </Switch>
     </Router>
   );

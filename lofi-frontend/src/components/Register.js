@@ -16,7 +16,7 @@ const Register = () => {
   const register = e => {
     e.preventDefault();
     registerHelper(registerInfo);
-    history.push("/");
+    history.push("/login");
   };
 
   const goBack = () =>
