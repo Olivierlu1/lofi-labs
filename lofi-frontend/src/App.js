@@ -90,7 +90,8 @@ function App() {
       const token = localStorage.usertoken;
       const decoded = jwt_decode(token, { header: true });
       setCurrUser({
-        email: decoded.identity.email
+        email: decoded.identity.email,
+        favoriteChords: decoded.identity.favoriteChords
       });
     }
   }, []);
@@ -111,6 +112,7 @@ function App() {
               quantizedSequence={sequence}
               rnnPlayer={rnnPlayer}
               chordProgression={generatedChordProgression}
+              currUser={currUser}
             />
           )}
         />

@@ -15,8 +15,10 @@ const Login = ({ setCurrUser }) => {
 
   const login = async e => {
     e.preventDefault();
-    const result = await loginHelper(loginInfo);
+    const [result, favoriteChords] = await loginHelper(loginInfo);
+    console.log("This is the result ", result, favoriteChords);
     if (result !== undefined) {
+      loginInfo.favoriteChords = favoriteChords;
       setCurrUser(loginInfo);
       history.push("/");
     } else {
