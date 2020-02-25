@@ -61,7 +61,8 @@ def login():
             access_token = create_access_token(identity={
                 'email': response['email']
             })
-            result = jsonify({"token": access_token})
+            result = jsonify(
+                {"token": access_token, "favoriteChords": response['favoriteChords']})
         else:
             result = jsonify({"error: Invalid username and password"})
     else:

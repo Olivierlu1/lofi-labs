@@ -21,7 +21,8 @@ export const loginHelper = user => {
     .then(response => {
       if (typeof response.data["token"] !== undefined) {
         localStorage.setItem("usertoken", response.data.token);
-        return response.data.token;
+        console.log(response.data);
+        return [response.data.token, response.data.favoriteChords];
       } else {
         return response.data;
       }
