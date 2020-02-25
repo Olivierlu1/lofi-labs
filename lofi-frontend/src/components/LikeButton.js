@@ -4,11 +4,14 @@ import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import { grey, blue } from "@material-ui/core/colors";
 
-const LikeButton = ({ isLikeButton }) => {
+const LikeButton = ({ isLikeButton, chordsCallback }) => {
   const [likeState, setLikeState] = useState(false);
 
   const handleClick = () => {
     setLikeState(!likeState);
+    if (!isLikeButton) {
+      chordsCallback();
+    }
   };
 
   return (
