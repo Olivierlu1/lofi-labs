@@ -52,10 +52,9 @@ const PlayButton = ({
   const changeChords = () => {
     setChordProgressionNumber(Math.floor(Math.random() * chordProgressions.length))
     setTonicNumber(Math.floor(Math.random() * notes.length))
-    console.log(tonicNumber);
-    console.log(chordProgressionNumber);
     setCurrentChords(generateChordProgression(chordProgressionNumber, tonicNumber));
-    console.log(currentChords);
+    rnnPlayer.stop();
+    if (playState === false) startProgram(improvRNN, 0);
   };
 
   function chordToNoteSequence(chordName, startStep, endStep, instrument = 0) {
@@ -73,7 +72,6 @@ const PlayButton = ({
   }
 
   async function startProgram(improvRNN, chordIndex) {
-    console.log(currentChords);
     try {
       await improvRNN.initialize();
       let improvisedMelody = await improvRNN.continueSequence(
