@@ -17,7 +17,7 @@ const NavBar = ({ currUser, setCurrUser }) => {
 
   const logOut = e => {
     e.preventDefault();
-    localStorage.removeItem("usertoken");
+    localStorage.clear();
     setCurrUser({});
     history.push("/");
   };
