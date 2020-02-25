@@ -8,7 +8,6 @@ import { toMidi } from "@tonaljs/midi";
 import audioGif from "../assets/audioGIF.gif";
 import LikeButton from "./LikeButton";
 import Header from "./header";
-import NavBar from "./NavBar";
 import audioPNG from "../assets/stillAudio.png";
 
 const PlayButtonStyle = { fontSize: 100, color: grey[50] };
@@ -79,9 +78,6 @@ const PlayButton = ({
 
   return (
     <div>
-      <div>
-        <NavBar />
-      </div>
       <div className="wrapper">
         <div className="header">
           <Header />

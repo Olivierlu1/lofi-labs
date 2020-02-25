@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PlayButton from "./components/PlayButton";
 import * as mm from "@magenta/music";
 import { fromRomanNumerals } from "@tonaljs/progression";
 import "./App.css";
-
+import NavBar from "./components/NavBar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import jwt_decode from "jwt-decode";
 
 function App() {
   const improvRNN = new mm.MusicRNN(
@@ -78,21 +82,49 @@ function App() {
     totalQuantizedSteps: 16
   };
 
+  const [currUser, setCurrUser] = useState({});
+
+  // Set current User
+  useEffect(() => {
+    if (localStorage.usertoken) {
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token, { header: true });
+      setCurrUser({
+        email: decoded.identity.email
+      });
+    }
+  }, []);
+
+  console.log(currUser);
   return (
-    <div>
-      
-      <div className="buttons">
-        <PlayButton
-          instrument="rnn"
-          improvRNN={improvRNN}
-          DRUMS={DRUMS}
-          quantizedSequence={sequence}
-          rnnPlayer={rnnPlayer}
-          chordProgression={generatedChordProgression}
-       />
-      </div>
-    </div>
-    
+    <Router>
+      <NavBar currUser={currUser} setCurrUser={setCurrUser} />
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <PlayButton
+              instrument="rnn"
+              improvRNN={improvRNN}
+              DRUMS={DRUMS}
+              quantizedSequence={sequence}
+              rnnPlayer={rnnPlayer}
+              chordProgression={generatedChordProgression}
+            />
+          )}
+        />
+        {/* <div className="buttons"> */}
+
+        {/* </div> */}
+        <Route exact path="/register" component={Register} />
+        <Route
+          exact
+          path="/login"
+          render={() => <Login setCurrUser={setCurrUser} />}
+        />
+      </Switch>
+    </Router>
   );
 }
 
