@@ -25,7 +25,7 @@ A virtual environment is an isolated copy of Python that lets you work on one pr
 1. Go to lofi-backend: `cd lofi-backend`
 2. Create virtual environment: `virtualenv mypython`
 3. Activate virtual environment: `source mypython/bin/activate`
-4. Install requirements into virtual environment: `pip install -r requirements.txt`
+4. Install requirements into virtual environment: `pip3 install -r requirements.txt`
 
 From now on, just make sure you are in your virtual environment when developing in lofi-backend.
 - To activate virtual environment: `source mypython/bin/activate`
