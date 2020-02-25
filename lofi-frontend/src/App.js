@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PlayButton from "./components/PlayButton";
+import MusicPlayer from "./components/MusicPlayer";
 import * as mm from "@magenta/music";
 import { fromRomanNumerals } from "@tonaljs/progression";
 import "./App.css";
@@ -101,11 +101,20 @@ function App() {
     <Router>
       <NavBar currUser={currUser} setCurrUser={setCurrUser} />
       <Switch>
+        {/* <div className="buttons"> */}
+
+        {/* </div> */}
+        <Route exact path="/register" component={Register} />
+        <Route
+          exact
+          path="/login"
+          render={() => <Login setCurrUser={setCurrUser} />}
+        />
         <Route
           exact
           path="/"
           render={() => (
-            <PlayButton
+            <MusicPlayer
               instrument="rnn"
               improvRNN={improvRNN}
               DRUMS={DRUMS}
@@ -115,15 +124,6 @@ function App() {
               currUser={currUser}
             />
           )}
-        />
-        {/* <div className="buttons"> */}
-
-        {/* </div> */}
-        <Route exact path="/register" component={Register} />
-        <Route
-          exact
-          path="/login"
-          render={() => <Login setCurrUser={setCurrUser} />}
         />
       </Switch>
     </Router>
