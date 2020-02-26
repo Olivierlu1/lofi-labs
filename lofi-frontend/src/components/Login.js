@@ -10,15 +10,18 @@ const Login = ({ setCurrUser }) => {
   const { state } = useLocation();
 
   const setUserField = (field, data) => {
-    setLoginInfo({ ...loginInfo, [field]: data });
+    if (Object.entries(loginInfo).length) {
+      console.log(loginInfo);
+      setLoginInfo({ ...loginInfo, [field]: data });
+    }
   };
 
   const login = async e => {
     e.preventDefault();
-    const [result, favoriteChords] = await loginHelper(loginInfo);
-    console.log("This is the result ", result, favoriteChords);
-    if (result !== undefined) {
-      loginInfo.favoriteChords = favoriteChords;
+    const result = await loginHelper(loginInfo);
+    console.log("This is the result ", result);
+    if (!result.error) {
+      loginInfo.favoriteChords = result.favoriteChords;
       setCurrUser(loginInfo);
       history.push("/");
     } else {
