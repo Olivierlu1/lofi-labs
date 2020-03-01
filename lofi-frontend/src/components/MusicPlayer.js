@@ -21,9 +21,12 @@ const MusicPlayer = ({
 }) => {
   const [playState, setPlayState] = useState(true);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setPlayState(!playState);
-    if (playState === true && improvRNN) startProgram(improvRNN, 0);
+    if (playState === true && improvRNN) {
+      await improvRNN.initialize();
+      startProgram(improvRNN, 0);
+    }
     if (playState === false) rnnPlayer.stop();
   };
 
@@ -43,7 +46,6 @@ const MusicPlayer = ({
 
   async function startProgram(improvRNN, chordIndex) {
     try {
-      await improvRNN.initialize();
       let improvisedMelody = await improvRNN.continueSequence(
         quantizedSequence,
         16,
