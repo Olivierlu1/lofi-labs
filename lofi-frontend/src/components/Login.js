@@ -3,6 +3,7 @@ import { loginHelper } from "../UserFunction";
 import { useHistory, useLocation } from "react-router-dom";
 import { Input, Button, Card, Grid } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const Login = ({ setCurrUser }) => {
   const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
@@ -34,60 +35,68 @@ const Login = ({ setCurrUser }) => {
     state ? history.push(state.prevURL) : history.push("/");
 
   return (
-    <Grid item xs={12} sm={12} md={6} lg={6}>
-      {
-        <Button
-          onClick={goBack}
-          color="default"
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-          className="back-button"
-        >
-          Back
-        </Button>
-      }
-      <Card
-        className="login-card"
-        style={{ background: "none", width: "400px", margin: "0 auto" }}
+    <div>
+      <Button
+        onClick={goBack}
+        color="primary"
+        variant="contained"
+        startIcon={<ArrowBackIcon />}
+        style={{ margin: "5px" }}
+        className="back-button"
       >
-        <form
-          className="form"
-          onSubmit={login}
-          a
-          style={{ textAlign: "center" }}
+        Back
+      </Button>
+      <form
+        className="form"
+        onSubmit={login}
+        a
+        style={{
+          backgroundColor: "#d85ad8",
+          textAlign: "center",
+          width: "500px",
+          margin: "0 auto",
+          marginTop: "80px",
+          padding: "30px",
+          paddingTop: "10px"
+        }}
+      >
+        <h1>Login</h1>
+        <Grid container className="email">
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Input
+              className="input"
+              placeholder="Email"
+              value={loginInfo.email}
+              color="primary"
+              onChange={e => setUserField("email", e.target.value)}
+              style={{ width: "400px" }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container className="password">
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Input
+              className="input"
+              placeholder="Password"
+              value={loginInfo.password}
+              type="password"
+              color="primary"
+              onChange={e => setUserField("password", e.target.value)}
+              style={{ width: "400px", marginTop: "20px" }}
+            />
+          </Grid>
+        </Grid>
+        <Button
+          className="login-button"
+          variant="contained"
+          color="primary"
+          type="submit"
+          style={{ marginTop: "20px", width: "100px" }}
         >
-          <Grid container className="email">
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Input
-                className="input"
-                placeholder="Email"
-                value={loginInfo.email}
-                onChange={e => setUserField("email", e.target.value)}
-              />
-            </Grid>
-          </Grid>
-          <Grid container className="password">
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Input
-                className="input"
-                placeholder="Password"
-                value={loginInfo.password}
-                type="password"
-                onChange={e => setUserField("password", e.target.value)}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            className="login-button"
-            variant="contained"
-            color="primary"
-            type="submit"
-          >
-            Login
-          </Button>
-        </form>
-      </Card>
-    </Grid>
+          Login
+        </Button>
+      </form>
+    </div>
   );
 };
 
