@@ -37,3 +37,27 @@ export const loginHelper = user => {
       return err;
     });
 };
+
+export const favoriteHelper = (chordProgression, currentUser) => {
+  console.log("This is the submitted chords to favoriteHelper", chordProgression);
+  return axios
+    .post(`${serverUrl}/users/favoriteChords`, {
+      chords: chordProgression,
+      email: currentUser.email
+    })
+    .then(response => {
+      console.log("This is response", response);
+      if (!response.data.error) {
+        return {
+          favoriteChords: response.data.favoriteChords
+        };
+      } else {
+        console.log("This is failed response", response.data);
+        return response.data;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      return err;
+    });
+};

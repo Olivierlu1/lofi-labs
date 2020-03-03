@@ -9,9 +9,7 @@ const LikeButton = ({ isLikeButton, chordsCallback }) => {
 
   const handleClick = () => {
     setLikeState(!likeState);
-    if (!isLikeButton) {
-      chordsCallback();
-    }
+    chordsCallback();
   };
 
   return (
