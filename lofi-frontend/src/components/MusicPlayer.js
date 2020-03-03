@@ -3,6 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import { fromRomanNumerals } from "@tonaljs/progression";
+import { favoriteHelper } from "../UserFunction";
 import { grey } from "@material-ui/core/colors";
 import { chord } from "@tonaljs/chord";
 import { toMidi } from "@tonaljs/midi";
@@ -18,7 +19,8 @@ const MusicPlayer = ({
   quantizedSequence,
   DRUMS,
   rnnPlayer,
-  chordProgression
+  chordProgression,
+  currUser
 }) => {
   const [playState, setPlayState] = useState(true);
   const [chordProgressionNumber, setChordProgressionNumber] = useState(0);
@@ -58,6 +60,11 @@ const MusicPlayer = ({
     rnnPlayer.stop();
     if (playState === false) startProgram(improvRNN, 0);
   };
+
+  const likeChords = async () => {
+    const result = await favoriteHelper(currentChords, currUser);
+    console.log("This is the result ", result);
+  }
 
   function chordToNoteSequence(chordName, startStep, endStep, instrument = 0) {
     let noteSequence = [];
@@ -131,7 +138,7 @@ const MusicPlayer = ({
                 <PauseCircleOutlineIcon style={PlayButtonStyle} />
               )}
             </IconButton>
-            <LikeButton isLikeButton={true} />
+            <LikeButton isLikeButton={true} chordsCallback={likeChords} />
           </div>
         </div>
         <br />
