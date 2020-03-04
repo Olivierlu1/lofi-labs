@@ -31,13 +31,14 @@ const LikeButton = ({ isLikeButton, chordsCallback }) => {
           style={{ fontSize: 70, color: likeState ? grey[50] : blue[900] }}
         />
       )}
-      <Modal isOpen={modalIsOpen}>
-        <div>
-             <p>Sign in to save preferences</p>
-        <div> 
-            <button onClick={handleClick}>Close</button>
-        </div>
-        </div>
+      <Modal 
+        isOpen={modalIsOpen} 
+        onRequestClose={() => setModalIsOpen(false)}
+        className = "popup_content"
+        overlayClassName = "popup"
+      >
+        <p className="popup_text">Log in to save personalized lo-fi music</p>
+          <button onClick={handleClick} className="closebutton">Close</button>
     </Modal>
     </IconButton>
   );
