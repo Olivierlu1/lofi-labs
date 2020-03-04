@@ -24,11 +24,11 @@ const LikeButton = ({ isLikeButton, chordsCallback }) => {
     <IconButton onClick={handleClick} >
       {isLikeButton ? (
         <ThumbUpIcon
-          style={{ fontSize: 70, color: likeState ? grey[50] : blue[900] }}
+          style={{ fontSize: 70, color: likeState ? grey[50] : '#a9c5c9' }}
         />
       ) : (
         <ThumbDownIcon
-          style={{ fontSize: 70, color: likeState ? grey[50] : blue[900] }}
+          style={{ fontSize: 70, color: likeState ? grey[50] : '#a9c5c9' }}
         />
       )}
       <Modal isOpen={modalIsOpen}>

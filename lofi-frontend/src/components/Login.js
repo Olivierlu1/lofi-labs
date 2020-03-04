@@ -41,7 +41,7 @@ const Login = ({ setCurrUser }) => {
         color="primary"
         variant="contained"
         startIcon={<ArrowBackIcon />}
-        style={{ margin: "5px" }}
+        style={{ margin: "10px" }}
         className="back-button"
       >
         Back
@@ -51,7 +51,7 @@ const Login = ({ setCurrUser }) => {
         onSubmit={login}
         a
         style={{
-          backgroundColor: "#d85ad8",
+          backgroundColor: "#dbb2a6",
           textAlign: "center",
           width: "500px",
           margin: "0 auto",
@@ -91,9 +91,9 @@ const Login = ({ setCurrUser }) => {
           variant="contained"
           color="primary"
           type="submit"
-          style={{ marginTop: "20px", width: "100px" }}
+          style={{ marginTop: "30px", width: "100px" }}
         >
-          Login
+          Submit
         </Button>
       </form>
     </div>
