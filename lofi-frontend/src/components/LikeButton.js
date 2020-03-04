@@ -15,6 +15,7 @@ const LikeButton = ({ isLikeButton, chordsCallback }) => {
       chordsCallback();
     }
     setModalIsOpen(!modalIsOpen);
+    chordsCallback();
   };
 
   const[modalIsOpen,setModalIsOpen] = useState(false);

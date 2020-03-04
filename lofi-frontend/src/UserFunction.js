@@ -13,21 +13,51 @@ export const registerHelper = newUser => {
 };
 
 export const loginHelper = user => {
+  console.log("This is the submitted loginInfo to loginHelper", user);
   return axios
     .post(`${serverUrl}/users/login`, {
       email: user.email,
       password: user.password
     })
     .then(response => {
-      if (typeof response.data["token"] !== undefined) {
+      console.log("This is response", response);
+      if (!response.data.error) {
         localStorage.setItem("usertoken", response.data.token);
-        console.log(response.data);
-        return [response.data.token, response.data.favoriteChords];
+        return {
+          token: response.data.token,
+          favoriteChords: response.data.favoriteChords
+        };
       } else {
+        console.log("This is failed response", response.data);
         return response.data;
       }
     })
     .catch(err => {
       console.log(err);
+      return err;
+    });
+};
+
+export const favoriteHelper = (chordProgression, currentUser) => {
+  console.log("This is the submitted chords to favoriteHelper", chordProgression);
+  return axios
+    .post(`${serverUrl}/users/favoriteChords`, {
+      chords: chordProgression,
+      email: currentUser.email
+    })
+    .then(response => {
+      console.log("This is response", response);
+      if (!response.data.error) {
+        return {
+          favoriteChords: response.data.favoriteChords
+        };
+      } else {
+        console.log("This is failed response", response.data);
+        return response.data;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      return err;
     });
 };

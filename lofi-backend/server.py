@@ -39,7 +39,8 @@ def register():
     user_id = users.insert({
         'email': email,
         "password": password,
-        "created": created
+        "created": created,
+        'favoriteChords': []
     })
 
     new_user = users.find_one({'_id': user_id})
@@ -61,13 +62,44 @@ def login():
             access_token = create_access_token(identity={
                 'email': response['email']
             })
-            result = jsonify(
-                {"token": access_token, "favoriteChords": response['favoriteChords']})
+            if('favoriteChords' in response):
+                result = jsonify(
+                    {"token": access_token, "favoriteChords": response['favoriteChords']})
+            else:
+                result = jsonify(
+                    {"token": access_token, "favoriteChords": []})
+
         else:
-            result = jsonify({"error: Invalid username and password"})
+            result = jsonify({"error": "Invalid username and password"})
     else:
         result = jsonify({"result": "No results found"})
     return result
+
+@app.route('/users/favoriteChords', methods=['POST'])
+def favoriteChords():
+    users = pymongo.collection.Collection(db, 'users')
+    chords = request.get_json()['chords']
+    email = request.get_json()['email']
+    result = ""
+
+    response = users.find_one({'email': email})
+    password = response['password']
+    created = response['created']
+    favorites = response['favoriteChords']
+    favorites.append(chords)
+
+    users.update(
+        {'email': email}, 
+        {
+            'favoriteChords': favorites,
+            'email': email,
+            'password': password,
+            'created': created
+        }
+    )
+    return jsonify({"favoriteChords": response['favoriteChords']})
+
+    
 
 
 if __name__ == '__main__':

@@ -23,56 +23,65 @@ const Register = () => {
     state ? history.push(state.prevURL) : history.push("/");
 
   return (
-    <Grid item xs={12} sm={12} md={6} lg={6}>
-      {
+    <div>
+      <Button
+        onClick={goBack}
+        color="primary"
+        variant="contained"
+        style={{ margin: "5px" }}
+        startIcon={<ArrowBackIcon />}
+        className="back-button"
+      >
+        Back
+      </Button>
+      <form
+        className="form"
+        onSubmit={register}
+        style={{
+          backgroundColor: "#d85ad8",
+          textAlign: "center",
+          width: "500px",
+          margin: "0 auto",
+          marginTop: "80px",
+          padding: "30px",
+          paddingTop: "10px"
+        }}
+      >
+        <h1>Register</h1>
+        <Grid container className="email">
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Input
+              className="input"
+              placeholder="Email"
+              value={registerInfo.email}
+              onChange={e => setUserField("email", e.target.value)}
+              style={{ width: "400px" }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container className="password">
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Input
+              className="input"
+              placeholder="Password"
+              value={registerInfo.password}
+              type="password"
+              onChange={e => setUserField("password", e.target.value)}
+              style={{ width: "400px", marginTop: "20px" }}
+            />
+          </Grid>
+        </Grid>
         <Button
-          onClick={goBack}
-          color="default"
+          className="login-button"
           variant="contained"
-          startIcon={<ArrowBackIcon />}
-          className="back-button"
+          color="primary"
+          type="submit"
+          style={{ marginTop: "20px", width: "100px" }}
         >
-          Back
+          Register
         </Button>
-      }
-      <Card className="login-card">
-        <form
-          className="form"
-          onSubmit={register}
-          style={{ textAlign: "center" }}
-        >
-          <Grid container className="email">
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Input
-                className="input"
-                placeholder="Email"
-                value={registerInfo.email}
-                onChange={e => setUserField("email", e.target.value)}
-              />
-            </Grid>
-          </Grid>
-          <Grid container className="password">
-            <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Input
-                className="input"
-                placeholder="Password"
-                value={registerInfo.password}
-                type="password"
-                onChange={e => setUserField("password", e.target.value)}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            className="login-button"
-            variant="contained"
-            color="primary"
-            type="submit"
-          >
-            Register
-          </Button>
-        </form>
-      </Card>
-    </Grid>
+      </form>
+    </div>
   );
 };
 
