@@ -38,7 +38,7 @@ const Register = () => {
         className="form"
         onSubmit={register}
         style={{
-          backgroundColor: "#d85ad8",
+          backgroundColor: "#dbb2a6",
           textAlign: "center",
           width: "500px",
           margin: "0 auto",
@@ -76,9 +76,9 @@ const Register = () => {
           variant="contained"
           color="primary"
           type="submit"
-          style={{ marginTop: "20px", width: "100px" }}
+          style={{ marginTop: "30px", width: "100px" }}
         >
-          Register
+          Submit
         </Button>
       </form>
     </div>

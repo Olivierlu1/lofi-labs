@@ -1,16 +1,8 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-const redTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#d85ad8"
-    }
-  }
-});
 
 const NavBar = ({ currUser, setCurrUser }) => {
   const history = useHistory();
@@ -24,7 +16,7 @@ const NavBar = ({ currUser, setCurrUser }) => {
 
   const nonUserHeader = () => {
     return (
-      <MuiThemeProvider theme={redTheme}>
+      <div>
         <Link to="/login">
           <Button
             variant="contained"
@@ -45,13 +37,13 @@ const NavBar = ({ currUser, setCurrUser }) => {
             Register
           </Button>
         </Link>
-      </MuiThemeProvider>
+      </div>
     );
   };
 
   const userHeader = currUser => {
     return (
-      <MuiThemeProvider theme={redTheme}>
+      <div>
         <Button
           variant="contained"
           color="primary"
@@ -65,7 +57,7 @@ const NavBar = ({ currUser, setCurrUser }) => {
         >
           Logout
         </Button>
-      </MuiThemeProvider>
+      </div>
     );
   };
 

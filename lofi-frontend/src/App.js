@@ -5,9 +5,19 @@ import { fromRomanNumerals } from "@tonaljs/progression";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import jwt_decode from "jwt-decode";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#a9c5c9",
+      contrastText: "#fff",
+    }
+  }
+});
 
 function App() {
   const improvRNN = new mm.MusicRNN(
@@ -99,33 +109,32 @@ function App() {
   console.log(currUser);
   return (
     <Router>
-      <NavBar currUser={currUser} setCurrUser={setCurrUser} />
-      <Switch>
-        {/* <div className="buttons"> */}
-
-        {/* </div> */}
-        <Route exact path="/register" component={Register} />
-        <Route
-          exact
-          path="/login"
-          render={() => <Login setCurrUser={setCurrUser} />}
-        />
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <MusicPlayer
-              instrument="rnn"
-              improvRNN={improvRNN}
-              DRUMS={DRUMS}
-              quantizedSequence={sequence}
-              rnnPlayer={rnnPlayer}
-              chordProgression={generatedChordProgression}
-              currUser={currUser}
-            />
-          )}
-        />
-      </Switch>
+      <MuiThemeProvider theme={theme}>
+        <NavBar currUser={currUser} setCurrUser={setCurrUser} />
+        <Switch>
+          <Route exact path="/register" component={Register} />
+          <Route
+            exact
+            path="/login"
+            render={() => <Login setCurrUser={setCurrUser} />}
+          />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <MusicPlayer
+                instrument="rnn"
+                improvRNN={improvRNN}
+                DRUMS={DRUMS}
+                quantizedSequence={sequence}
+                rnnPlayer={rnnPlayer}
+                chordProgression={generatedChordProgression}
+                currUser={currUser}
+              />
+            )}
+          />
+        </Switch>
+      </MuiThemeProvider>
     </Router>
   );
 }

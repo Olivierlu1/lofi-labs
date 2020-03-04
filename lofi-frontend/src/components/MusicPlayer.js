@@ -7,10 +7,10 @@ import { favoriteHelper } from "../UserFunction";
 import { grey } from "@material-ui/core/colors";
 import { chord } from "@tonaljs/chord";
 import { toMidi } from "@tonaljs/midi";
-import audioGif from "../assets/audioGIF.gif";
+import audioGif from "../assets/lofi_gif.gif";
+import audioPNG from "../assets/lofi_still.png";
 import LikeButton from "./LikeButton";
 import Title from "./Title";
-import audioPNG from "../assets/stillAudio.png";
 
 const PlayButtonStyle = { fontSize: 100, color: grey[50] };
 
@@ -124,9 +124,9 @@ const MusicPlayer = ({
         <div className="container3">
           <div className="container2">
             {!playState ? (
-              <img src={audioGif} alt="audio visualizer" />
+              <img src={audioGif} style={{width: 550}} alt="audio visualizer" />
             ) : (
-              <img src={audioPNG} alt="audio visualizer" />
+              <img src={audioPNG} style={{width: 550}} alt="audio visualizer" />
             )}
           </div>
           <div className="container1">
