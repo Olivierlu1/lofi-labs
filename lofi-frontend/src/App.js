@@ -101,15 +101,6 @@ function App() {
     <Router>
       <NavBar currUser={currUser} setCurrUser={setCurrUser} />
       <Switch>
-        {/* <div className="buttons"> */}
-
-        {/* </div> */}
-        <Route exact path="/register" component={Register} />
-        <Route
-          exact
-          path="/login"
-          render={() => <Login setCurrUser={setCurrUser} />}
-        />
         <Route
           exact
           path="/"
@@ -124,6 +115,15 @@ function App() {
               currUser={currUser}
             />
           )}
+        />
+        {/* <div className="buttons"> */}
+
+        {/* </div> */}
+        <Route exact path="/register" component={Register} />
+        <Route
+          exact
+          path="/login"
+          render={() => <Login setCurrUser={setCurrUser} />}
         />
       </Switch>
     </Router>
