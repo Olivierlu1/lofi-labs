@@ -22,7 +22,7 @@ const NavBar = ({ currUser, setCurrUser }) => {
             variant="contained"
             color="primary"
             size="large"
-            style={{ float: "right", marginRight: 20, marginTop: 5 }}
+            style={{ float: "right", marginRight: 10, marginTop: 10}}
           >
             Login
           </Button>
@@ -32,7 +32,7 @@ const NavBar = ({ currUser, setCurrUser }) => {
             variant="contained"
             color="primary"
             size="large"
-            style={{ float: "right", marginRight: 20, marginTop: 5 }}
+            style={{ float: "right", marginRight: 20, marginTop: 10}}
           >
             Register
           </Button>
@@ -48,11 +48,13 @@ const NavBar = ({ currUser, setCurrUser }) => {
           variant="contained"
           color="primary"
           size="large"
+          style={{marginRight: 20, marginLeft: 10, marginTop: 10}}
         >{`Hello ${currUser.email}`}</Button>
         <Button
           variant="contained"
           color="primary"
           size="large"
+          style={{float: "right", marginRight: 10, marginTop: 10}}
           onClick={logOut}
         >
           Logout
