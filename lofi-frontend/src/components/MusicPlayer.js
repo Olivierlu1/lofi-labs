@@ -26,6 +26,8 @@ const MusicPlayer = ({
   const [chordProgressionNumber, setChordProgressionNumber] = useState(0);
   const [tonicNumber, setTonicNumber] = useState(0);
   const [currentChords, setCurrentChords] = useState(chordProgression);
+  const melodies = [];
+  let timesPlayed = 0;
 
   const handleClick = async () => {
     setPlayState(!playState);
@@ -33,7 +35,10 @@ const MusicPlayer = ({
       await improvRNN.initialize();
       startProgram(improvRNN, 0);
     }
-    if (playState === false) rnnPlayer.stop();
+    if (playState === false) {
+      rnnPlayer.stop();
+      timesPlayed = 0;
+    }
   };
 
   const chordProgressions = [
@@ -42,21 +47,38 @@ const MusicPlayer = ({
     ["IIm7", "V7", "IIIm7", "VI7"],
     ["IVMaj7", "IIIm7", "IIm7", "IMaj7"]
   ];
-  
-  const notes = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
+
+  const notes = [
+    "A",
+    "A#",
+    "B",
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#"
+  ];
 
   const generateChordProgression = (chordsNum, tonicNum) => {
     chordProgression = fromRomanNumerals(
       notes[tonicNum],
       chordProgressions[chordsNum]
-    )
+    );
     return chordProgression;
-  }
+  };
 
   const changeChords = () => {
-    setChordProgressionNumber(Math.floor(Math.random() * chordProgressions.length))
-    setTonicNumber(Math.floor(Math.random() * notes.length))
-    setCurrentChords(generateChordProgression(chordProgressionNumber, tonicNumber));
+    setChordProgressionNumber(
+      Math.floor(Math.random() * chordProgressions.length)
+    );
+    setTonicNumber(Math.floor(Math.random() * notes.length));
+    setCurrentChords(
+      generateChordProgression(chordProgressionNumber, tonicNumber)
+    );
     rnnPlayer.stop();
     if (playState === false) startProgram(improvRNN, 0);
   };
@@ -64,7 +86,7 @@ const MusicPlayer = ({
   const likeChords = async () => {
     const result = await favoriteHelper(currentChords, currUser);
     console.log("This is the result ", result);
-  }
+  };
 
   function chordToNoteSequence(chordName, startStep, endStep, instrument = 0) {
     let noteSequence = [];
@@ -89,9 +111,9 @@ const MusicPlayer = ({
         [currentChords[chordIndex]]
       );
 
-      improvisedMelody.notes.forEach(function(n) {
-        return (n.program = 0);
-      });
+      // improvisedMelody.notes.forEach(function(n) {
+      //   return (n.program = 0);
+      // });
 
       improvisedMelody.notes.push(...DRUMS.notes);
 
@@ -102,17 +124,28 @@ const MusicPlayer = ({
         4
       );
       improvisedMelody.notes.push(...chordNotes);
-      console.log(improvisedMelody);
       improvisedMelody.tempos = [{ time: 0, qpm: 100 }];
 
-      rnnPlayer.start(improvisedMelody).then(() => {
-        console.log("restarting");
-        startProgram(improvRNN, (chordIndex + 1) % 4);
-      });
+      if (melodies.length < 2) {
+        melodies.push(improvisedMelody);
+      }
+      if (timesPlayed === 0) {
+        start();
+        timesPlayed++;
+      }
+      startProgram(improvRNN, (chordIndex + 1) % 4);
     } catch (error) {
       console.error(error);
     }
   }
+
+  const start = () => {
+    rnnPlayer.start(melodies.shift()).then(() => {
+      console.log("restarting");
+      console.log(melodies);
+      start();
+    });
+  };
 
   return (
     <div>
