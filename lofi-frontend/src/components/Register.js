@@ -28,7 +28,7 @@ const Register = () => {
         onClick={goBack}
         color="primary"
         variant="contained"
-        style={{ margin: "5px" }}
+        style={{ margin: "10px" }}
         startIcon={<ArrowBackIcon />}
         className="back-button"
       >

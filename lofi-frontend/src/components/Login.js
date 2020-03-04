@@ -41,7 +41,7 @@ const Login = ({ setCurrUser }) => {
         color="primary"
         variant="contained"
         startIcon={<ArrowBackIcon />}
-        style={{ margin: "5px" }}
+        style={{ margin: "10px" }}
         className="back-button"
       >
         Back
