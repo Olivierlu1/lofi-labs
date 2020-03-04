@@ -36,6 +36,9 @@ h1 {
   align-items: center;
   background-color: #dbb2a6;
   border-radius: 30px;
+  border-style: solid;
+  border-color: #a35946;
+  border-width: 5px; 
 }
 .wrapper {
   display: flex;
