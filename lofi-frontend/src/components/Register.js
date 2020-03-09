@@ -44,7 +44,11 @@ const Register = () => {
           margin: "0 auto",
           marginTop: "80px",
           padding: "30px",
-          paddingTop: "10px"
+          paddingTop: "10px",
+          borderRadius: "30px",
+          borderStyle: "solid",
+          borderColor: "#a35946",
+          borderWidth: "5px"
         }}
       >
         <h1>Register</h1>

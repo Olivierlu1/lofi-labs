@@ -150,16 +150,24 @@ const MusicPlayer = ({
   return (
     <div>
       <title>Lofi Labs</title>
-      <div className="wrapper">
+      <div className="wrapper" style={{ marginLeft: "230px" }}>
         <div className="title">
           <Title />
         </div>
         <div className="container3">
           <div className="container2">
             {!playState ? (
-              <img src={audioGif} style={{width: 550}} alt="audio visualizer" />
+              <img
+                src={audioGif}
+                style={{ width: 550 }}
+                alt="audio visualizer"
+              />
             ) : (
-              <img src={audioPNG} style={{width: 550}} alt="audio visualizer" />
+              <img
+                src={audioPNG}
+                style={{ width: 550 }}
+                alt="audio visualizer"
+              />
             )}
           </div>
           <div className="container1">
