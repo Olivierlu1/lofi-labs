@@ -179,7 +179,7 @@ const MusicPlayer = ({
                 <PauseCircleOutlineIcon style={PlayButtonStyle} />
               )}
             </IconButton>
-            <LikeButton isLikeButton={true} chordsCallback={likeChords} />
+            <LikeButton isLikeButton={true} chordsCallback={likeChords} currUser={currUser} />
           </div>
         </div>
         <br />

@@ -43,7 +43,7 @@ function App() {
         "C",
         chordProgressions[0]
       );
-    } else {
+    } else if( currUser.favoriteChords) {
       const favChords = currUser.favoriteChords;
       return favChords[Math.floor(Math.random() * favChords.length)];
     }

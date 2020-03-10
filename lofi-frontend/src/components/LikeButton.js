@@ -5,16 +5,18 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import { grey, blue } from "@material-ui/core/colors";
 import Modal from 'react-modal';
 
-const LikeButton = ({ isLikeButton, chordsCallback }) => {
+const LikeButton = ({ isLikeButton, chordsCallback, currUser }) => {
   const [likeState, setLikeState] = useState(false);
 
 
   const handleClick = () => {
+    if (Object.keys(currUser).length < 1){
+    setModalIsOpen(!modalIsOpen);
+    }
     setLikeState(!likeState);
     if (!isLikeButton) {
       chordsCallback();
     }
-    setModalIsOpen(!modalIsOpen);
     chordsCallback();
   };
 

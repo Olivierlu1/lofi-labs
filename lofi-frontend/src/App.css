@@ -73,14 +73,13 @@ h1 {
 
 .popup_text {
   text-align: center;
-  font-size: 40px;
-  font: 'Times New Roman';
+  font-size: 30px;
 }
 
 .closebutton {
   border: none;
   color:rgb(179, 90, 90);
-  padding: 15px 32px;
+  border-radius: 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
