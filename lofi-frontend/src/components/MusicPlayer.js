@@ -42,10 +42,13 @@ const MusicPlayer = ({
   };
 
   const chordProgressions = [
-    ["IIm7", "V7", "IMaj7", "VI7"],
-    ["IMaj7", "VIm7", "IIm7", "V7"],
+    
+    ["IIm7b5", "V7b5", "Im7", "VI7"],
+    ["IIm7", "V7b5", "IMaj9", "VI7#5"],
     ["IIm7", "V7", "IIIm7", "VI7"],
-    ["IVMaj7", "IIIm7", "IIm7", "IMaj7"]
+    ["IVMaj7", "IIIm7", "IIm7", "IMaj7"],
+    ["IMaj7", "VIm7", "IIm7", "V7"],
+    
   ];
 
   const notes = [
@@ -91,7 +94,7 @@ const MusicPlayer = ({
   function chordToNoteSequence(chordName, startStep, endStep, instrument = 0) {
     let noteSequence = [];
     for (let note of chord(chordName).notes) {
-      note = note + "3";
+      note = note + (Math.floor(Math.random() * 3)+2).toString();
       noteSequence.push({
         pitch: toMidi(note),
         quantizedStartStep: startStep,
@@ -111,9 +114,9 @@ const MusicPlayer = ({
         [currentChords[chordIndex]]
       );
 
-      // improvisedMelody.notes.forEach(function(n) {
-      //   return (n.program = 0);
-      // });
+      improvisedMelody.notes.forEach(function(n) {
+      return (n.program = 11); // 4, 5, 11 are all good ones
+      });
 
       improvisedMelody.notes.push(...DRUMS.notes);
 
