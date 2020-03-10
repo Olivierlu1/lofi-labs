@@ -9,7 +9,6 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import jwt_decode from "jwt-decode";
-import { getChordsHelper } from "./UserFunction";
 
 const theme = createMuiTheme({
   palette: {
