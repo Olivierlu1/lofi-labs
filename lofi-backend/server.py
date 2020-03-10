@@ -75,12 +75,12 @@ def login():
         result = jsonify({"result": "No results found"})
     return result
 
-@app.route('/users/favoriteChords', methods=['POST'])
+
+@app.route('/users/favoriteChords', methods=['PUT'])
 def favoriteChords():
     users = pymongo.collection.Collection(db, 'users')
     chords = request.get_json()['chords']
     email = request.get_json()['email']
-    result = ""
 
     response = users.find_one({'email': email})
     password = response['password']

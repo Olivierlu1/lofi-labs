@@ -41,7 +41,7 @@ export const loginHelper = user => {
 export const favoriteHelper = (chordProgression, currentUser) => {
   console.log("This is the submitted chords to favoriteHelper", chordProgression);
   return axios
-    .post(`${serverUrl}/users/favoriteChords`, {
+    .put(`${serverUrl}/users/favoriteChords`, {
       chords: chordProgression,
       email: currentUser.email
     })

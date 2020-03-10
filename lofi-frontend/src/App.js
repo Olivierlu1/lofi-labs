@@ -9,6 +9,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import jwt_decode from "jwt-decode";
+import { getChordsHelper } from "./UserFunction";
 
 const theme = createMuiTheme({
   palette: {
@@ -36,10 +37,18 @@ function App() {
     ["IVMaj7", "IIIm7", "IIm7", "IMaj7"]
   ];
 
-  const generatedChordProgression = fromRomanNumerals(
-    "C",
-    chordProgressions[2]
-  );
+  const defaultChordProgression = () => {
+    console.log(currUser)
+    if (Object.keys(currUser).length === 0) {
+      return fromRomanNumerals(
+        "C",
+        chordProgressions[0]
+      );
+    } else {
+      const favChords = currUser.favoriteChords;
+      return favChords[Math.floor(Math.random() * favChords.length)];
+    }
+  };
 
   const sequence = {
     quantizationInfo: { stepsPerQuarter: 2 },
@@ -122,7 +131,7 @@ function App() {
                 DRUMS={DRUMS}
                 quantizedSequence={sequence}
                 rnnPlayer={rnnPlayer}
-                chordProgression={generatedChordProgression}
+                chordProgression={defaultChordProgression}
                 currUser={currUser}
               />
             )}
